@@ -74,6 +74,7 @@ router.post('/send', (req, res, next) => {
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(express.static('build'))
 // app.use(express.urlencoded());
 // app.use(express.multipart());
 app.use('/', router)
