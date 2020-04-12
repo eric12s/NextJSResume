@@ -70,7 +70,7 @@ const Contact = (props) => {
             //    url:"http://localhost:3002/send", 
             //    data:  data
             //  }
-                    axios.post('https://eric-sabag-resume.herokuapp.com//send', data).then((response)=>{
+                    axios.post('https://eric-sabag-resume.herokuapp.com/send', data).then((response)=>{
                         console.log(data)
                         if (response.data.status === 'success'){
                           alert("Message Sent."); 
