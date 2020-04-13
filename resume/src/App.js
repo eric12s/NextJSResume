@@ -16,7 +16,7 @@ function App(){
     description:"Have knowledge and experience in Java, C++, and Python with a high level of self-learning skills. \n Looking for a student position",
     image:"profilepic.jpeg",
     bio:"I'm a Computer Science student specializating in Bio-informatics in the 2nd year, with a passion for coding. I'm a self-learner looking for my first development job. As a student, I divide my time between University tasks and self-learning projects.",
-    contactmessage:"Have a job for me? What to invite me to an interview? You can give me a shout by email or by using the contact form below.",
+    contactmessage:"Have a job for me? Want to invite me to an interview? You can give me a shout by email or by using the contact form below.",
     email: "ericsabag@gmail.com",
     phone: "050-324-4471",
     city:"Beer Sheva",

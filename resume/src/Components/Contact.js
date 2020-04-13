@@ -82,7 +82,7 @@ const Contact = (props) => {
                            $('#message-warning').hide();
                            $('#contactForm').fadeOut();
                            $('#message-success').fadeIn();
-                        }else if(response.data.status === 'fail'){
+                        }else{
                            alert("Message failed to send.")
                            $('#image-loader').fadeOut();
                            //$('#message-warning').html(msg);
@@ -100,7 +100,7 @@ const Contact = (props) => {
                 </div>
 
                     <p className="lead">{contactMessage}
-                    <h5 className="warning">Please make sure that you fill all the fields!</h5></p>
+                    <h5 className="warning">Please make sure that you fill all the fields</h5></p>
             </div>
             <div className="row">
             <div className="eight columns">
