@@ -3,7 +3,7 @@ import React from 'react'
 const Testimonials = (props) => {
     if(props.data){
         var testimonial = props.data.map((testimonial) => {
-            return <li>
+            return <li key={testimonial.user}>
                     <blockquote>
                         <p>{testimonial.text}</p>
                         <cite>{testimonial.user}</cite>
@@ -17,7 +17,7 @@ const Testimonials = (props) => {
             <div className="text-container">
             <div className="row">
                 <div className="two columns header-col">
-                    <h1>Quate</h1>
+                    <h1><span>Quote</span></h1>
                 </div>
                 <div className="ten columns flex-container">
                     <ul className="slides">

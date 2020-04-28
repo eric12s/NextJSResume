@@ -100,7 +100,7 @@ const Contact = (props) => {
                 </div>
 
                     <p className="lead">{contactMessage}
-                    <h5 className="warning">Please make sure that you fill all the fields</h5></p>
+                    <span className="warning">Please make sure that you fill all the fields</span></p>
             </div>
             <div className="row">
             <div className="eight columns">

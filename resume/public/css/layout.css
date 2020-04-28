@@ -310,6 +310,13 @@ ul#nav li.current a { color: #F06000; }
    margin-top: 6px;
 }
 
+#resume div.description{
+   margin: 0 0 30px 0;
+   font-size: 100%;
+   display: block;
+   box-sizing: border-box;
+}
+
 /*----------------------------------------------*/
 /*	Skill Bars
 /*----------------------------------------------*/
@@ -879,7 +886,14 @@ call-to-action .button {
    padding-left : 18%;
 }
 #contact .header-col { padding-top: 6px; }
-#contact h5.warning {color: #D72828;}
+#contact span.warning {
+   color: #D72828;
+   font-size: 18px;
+   line-height: 30px;
+   font-family: 'opensans-bold', sans-serif;
+   font-weight: normal;
+   display: block;
+}
 
 /* contact form */
 #contact form { margin-bottom: 30px; }

@@ -5,7 +5,7 @@ const Resume = (props) => {
         var skillmessage =props.data.skillmessage
         var education = props.data.education.map((education) => {
             var description = education.description.map((line) => {
-                return <div>{line}</div>
+                return <div key={line}>{line}</div>
             })
 
             /////Check if the education still in proccess//////////////////////
@@ -23,8 +23,8 @@ const Resume = (props) => {
             }
             ///////////////////////////////////////////////////////////////////
             return <div key = {education.school}><h3>{education.school}</h3>
-            <p className="info">{education.degree}<span>&bull;</span><em className="date">{education.graduated}{bull}{isGrad}</em></p><p>{description} 
-            </p></div>
+            <p className="info">{education.degree}<span>&bull;</span><em className="date">{education.graduated}{bull}{isGrad}</em></p>
+            <div className="description">{description}</div></div>
         })
         var skills = props.data.skills.map((skill) => {
             return <div key = {skill.name}><h3>{skill.name}</h3><p><span>&bull;</span>{skill.level}<span>&bull;</span></p></div>
@@ -49,7 +49,7 @@ const Resume = (props) => {
                 <div className="nine columns main-col">
                     <div className="row item">
                         <div className="twelve columns">
-                           <p>{education}</p>
+                           {education}
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ const Resume = (props) => {
                 <p className="info">{skillmessage}</p>
                     <div className="row item">
                         <div className="twelve columns">
-                           <p>{skills}</p>
+                           {skills}
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ const Resume = (props) => {
                 <div>
                 <div className="nine columns main-col"><p className="lead center">As a programmer, I find that learning about new technologies help my development, and gives me new tools to improve my apps. I find it enjoyable and satisfying to learn new technologies.</p></div>
                 <ul className="bgrid-quarters s-bgrid-thirds cf">
-                    <p>{technologies}</p>
+                    <>{technologies}</>
                 </ul>
                 </div>
             </div>
