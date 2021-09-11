@@ -49,8 +49,7 @@ const Header = (props) => {
                 <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
             </p>
         </header>
- )
-    
+ )    
 }
 
 export default Header;
