@@ -1,21 +1,20 @@
 import React from 'react'
-import Link from 'next/link';
 
 const Header = (props) => {
-    if(props.data){
-        var name = props.data.name;
-        var occupation= props.data.occupation;
-        var description= props.data.description;
-        var city= props.data.city;
-        var networks= props.data.social.map(
+    if(props){
+        var name = props.name;
+        var occupation= props.occupation;
+        var description= props.description;
+        var city= props.city;
+        var networks= props.social.map(
             function(network){
-                  return <li key={network.name}><a href={network.url}><i className={network.className}></i></a></li>
+                  return <li key={network.name}><a href={network.url} aria-label={network.name}><i className={network.className}></i></a></li>
             }
         )
       }
 
     return( 
-        <header id="home">
+        <header id="home" style={{ height: 358 }}>
 
             <nav id="nav-wrap">
 
@@ -23,9 +22,9 @@ const Header = (props) => {
                 <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
 
                 <ul id="nav" className="nav">
-                    <li className="current"><a className="smoothscroll" href="#home">Home</a></li>
-                    <li><Link href="#about"><a className="smoothscroll">About</a></Link></li>
-                    <li><a className="smoothscroll" href="#resume">Resume</a></li>
+                    <li className="current" key="home"><a className="smoothscroll" href="#home">Home</a></li>
+                    <li key="about"><a className="smoothscroll" href="#about">About</a></li>
+                    <li key="resume"><a className="smoothscroll" href="#resume">Resume</a></li>
                     <li><a className="smoothscroll" href="#portfolio">Works</a></li>
                     <li><a className="smoothscroll" href="#testimonials">Testimonials</a></li>
                     <li><a className="smoothscroll" href="#contact">Contact</a></li>
@@ -36,8 +35,8 @@ const Header = (props) => {
             <div className="row banner">
                 <div className="banner-text">
                     <a className="smoothscroll name" href="#about"><h1 className="responsive-headline">I'm {name}.</h1></a>
-                    <h3>I'm a {city} based <span>{occupation}</span>.<br/> 
-                    {description}.</h3>
+                    <h2>I'm a {city} based <span>{occupation}</span>.<br/> 
+                    {description}.</h2>
                     <hr />
                     <ul className="social">
                         {networks}
@@ -46,7 +45,7 @@ const Header = (props) => {
             </div>
 
             <p className="scrolldown">
-                <a className="smoothscroll" href="#about"><i className="icon-down-circle"></i></a>
+                <a className="smoothscroll" href="#about" aria-label="scroll down"><i className="icon-down-circle"></i></a>
             </p>
         </header>
  )    
