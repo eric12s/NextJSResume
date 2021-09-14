@@ -973,12 +973,12 @@ call-to-action .button {
 	font-size: 13px;
 }
 #message-warning, #message-success {
-   display: none;
+  display: none;
 	background: #0F0F0F;
 	padding: 24px 24px;
 	margin-bottom: 36px;
-   width: 65%;
-   margin-left: 26%;
+  width: 65%;
+  margin-left: 26%;
 }
 #contact aside.details{
    float: right;

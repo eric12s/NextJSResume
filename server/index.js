@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 require('dotenv').config()
 
-var nodemailer = require('nodemailer');
-var cors = require('cors');
+const nodemailer = require('nodemailer');
+const cors = require('cors');
 const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 
@@ -16,59 +16,71 @@ const oauth2Client = new OAuth2(
 oauth2Client.setCredentials({
   refresh_token: process.env.REFRESHTOKEN
 });
-const accessToken = oauth2Client.getAccessToken()
 
-var transport = {
-    host: 'smtp.gmail.com',
-    port: 465,
-    auth: {
-      type: 'OAuth2',
-      user: process.env.USER,
-      clientId:  process.env.CLIENTID,
-      clientSecret:  process.env.CLIENTSECRET,
-      refreshToken:  process.env.REFRESHTOKEN,
-      accessToken: accessToken,
+const sendEmail = async (name, email, message, subject) => {
+  try {
+    const accessToken = await oauth2Client.getAccessToken();
+    const transport = {
+      host: 'smtp.gmail.com',
+      port: 465,
+      auth: {
+        type: 'OAuth2',
+        user: process.env.USER,
+        clientId:  process.env.CLIENTID,
+        clientSecret:  process.env.CLIENTSECRET,
+        refreshToken:  process.env.REFRESHTOKEN,
+        accessToken: accessToken,
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
     }
-}
+    const transporter = nodemailer.createTransport(transport);
 
-var transporter = nodemailer.createTransport(transport)
+    transporter.verify((error, success) => {
+      if (error) {
+        console.log(error);
+        throw new Error(error);
+      } else {
+        console.log('Server is ready to take messages');
+      }
+    });
 
-transporter.verify((error, success) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Server is ready to take messages');
+    const content = `name: ${name} \n subject: ${subject} \n email: ${email} \n message: ${message}`;
+
+    const mailOptions = {
+      from: name,
+      to: 'ericsabag@gmail.com',
+      subject: 'New Message from Contact Form',
+      text: content
+    }
+
+    const result = await transporter.sendMail(mailOptions);
+    return result;
+  } catch(error) {
+    throw new Error(error);
   }
-});
+}
 
 router.post('/send', (req, res, next) => {
   console.log(req.body.name)
   console.log(req.body.message)
 
-  var name = req.body.name
-  var email = req.body.email
-  var message = req.body.message
-  var subject = req.body.subject
-  var content = `name: ${name} \n subject: ${subject} \n email: ${email} \n message: ${message}`
+  const name = req.body.name
+  const email = req.body.email
+  const message = req.body.message
+  const subject = req.body.subject
 
-  var mail = {
-    from: name,
-    to: 'ericsabag@gmail.com',
-    subject: 'New Message from Contact Form',
-    text: content
-  }
+  sendEmail(name, email, message, subject)
+    .then(result => res.json({
+      status: 'success'
+    }))
+    .catch(error => {
+      res.json({
+        status: error
+      })
+    });
 
-  transporter.sendMail(mail, (err, data) => {
-    if (err) {
-      res.json({
-        status: err
-      })
-    } else {
-      res.json({
-       status: 'success'
-      })
-    }
-  })
 })
 
 const app = express()
@@ -80,3 +92,5 @@ app.use(express.static('build'))
 app.use('/', router)
 const PORT = process.env.PORT || 3002
 app.listen(PORT)
+
+module.exports = app;
